@@ -1,38 +1,26 @@
-version: '3.9'
+version: '3.8'
 
 volumes:
   pg-data:
 
 services:
-  db:
-    image: postgres:12.0-alpine
-    restart: always
-    container_name: db
-    networks:
-      - dbnetworks
+  web:
+    build: ./backend
+    command: bash -c "python manage.py migrate && gunicorn --bind 0.0.0.0:8000 stocks_products.wsgi" 
+    depends_on:
+      - db
     env_file:
       - ./backend/CRUD/stocks_products/.env
+
+  db:
+    image: postgres:15
+    env_file:
+      - .env
     volumes:
       - pg-data:/var/lib/postgresql/data
   
-  api:
-    build: ./backend
-    command: gunicorn stocks_products.wsgi -b 0.0.0.0:8000
-    restart: always
-    depends_on:
-      - db
-    links:
-      - db:db
-    networks:
-      - dbnetworks
-    env_file:
-      - ./backend/CRUD/stocks_products/.env
-    ports:
-      - "8000:8000"
+  
     
-networks:
-  dbnetworks:
-    driver: bridge
   # nginx:
   #   build: nginx
   #   ports:

@@ -86,9 +86,9 @@ WSGI_APPLICATION = "stocks_products.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": env("DB_ENGINE"),
-        "NAME": env("POSTGRES_DB"),
-        "USER": env("POSTGRES_USER"),
-        "PASSWORD": env("POSTGRES_PASSWORD"),
+        "NAME": env("DB_NAME"),
+        "USER": env("DB_USER"),
+        "PASSWORD": env("DB_PASSWORD"),
         "HOST": env("DB_HOST"),
         "PORT": env.int("DB_PORT"),
     }
@@ -146,3 +146,5 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 100,
 }
+
+print(DATABASES)
