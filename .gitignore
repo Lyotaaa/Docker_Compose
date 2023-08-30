@@ -1,4 +1,2 @@
 venv
 __pycache__
-backend/CRUD/stocks_products/env
-backend/CRUD/stocks_products/.env
