@@ -5,7 +5,7 @@ volumes:
 
 services:
   db:
-    image: postgres:15
+    image: postgres:15.0-alpine
     env_file:
       - ./backend/CRUD/stocks_products/.env
     volumes:
@@ -13,7 +13,8 @@ services:
   
   api:
     build: ./backend
-    command: bash -c "gunicorn --bind 0.0.0.0:8000 stocks_products.wsgi" 
+    command: bash -c "python manage.py migrate && 
+             gunicorn -b 0.0.0.0:8000 stocks_products.wsgi" 
     env_file:
       - ./backend/CRUD/stocks_products/.env
     ports:
