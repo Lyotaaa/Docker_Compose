@@ -1,4 +1,1 @@
-FROM nginx:latest
-
-RUN rm /etc/nginx/conf.d/default.conf
-COPY /nginx/nginx.conf /etc/nginx/conf.d
+FROM nginx:1.25

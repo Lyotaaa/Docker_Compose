@@ -28,4 +28,4 @@ class StockViewSet(ModelViewSet):
 
 @api_view(["GET"])
 def text_view(request):
-    return Response("Docker заработал!")
+    return Response("Docker compose заработал!")
