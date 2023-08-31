@@ -15,6 +15,7 @@ services:
     build: ./backend
     command: bash -c "python manage.py migrate && 
              gunicorn -b 0.0.0.0:8000 stocks_products.wsgi" 
+    # restart: always
     env_file:
       - ./backend/CRUD/stocks_products/.env
     ports:
