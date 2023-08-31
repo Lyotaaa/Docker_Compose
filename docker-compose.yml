@@ -13,15 +13,16 @@ services:
   
   api:
     build: ./backend
-    command: bash -c "python manage.py migrate && 
+    command: bash -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate && 
              gunicorn -b 0.0.0.0:8000 stocks_products.wsgi" 
-    # restart: always
+    restart: on-failure:3
     env_file:
       - ./backend/CRUD/stocks_products/.env
     ports:
       - "8000:8000"
     volumes:
-      -  ./backend/CRUD/static:/static
+      -  ./backend/CRUD/static:/CRUD/static
     depends_on:
       - db
     
