@@ -21,5 +21,5 @@ docker compose up -d
 
 http://localhost/api/v2/
 
-Сайт должен отобразиться с файломи [static](./backend/CRUD/static/). Файлы static собирается автоматически при запуске.
+Сайт должен отобразиться с файлами [static](./backend/CRUD/static/). Файлы static собирается автоматически при запуске.
 
